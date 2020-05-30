@@ -59,16 +59,13 @@ function init(wsServer, path, vkToken) {
                 send = (target, event, data) => userRegistry.send(target, event, data),
                 update = () => send(room.onlinePlayers, "state", room),
                 updatePlayerState = () => {
-                    if (state.masterCard != null)
-                        [...room.players].forEach(playerId => {
-                            if (room.onlinePlayers.has(playerId))
-                                if (room.master === playerId)
-                                    send(playerId, "player-state", {masterCard: state.masterCard});
-                                else
-                                    send(playerId, "player-state", {
-                                        votes: {[playerId]: state.votes[playerId]}
-                                    });
-                        });
+                    [...room.players].forEach(playerId => {
+                        if (room.onlinePlayers.has(playerId))
+                            send(playerId, "player-state", {
+                                masterPicked: room.master === playerId ? state.masterCard : null,
+                                picked: state.votes[playerId] == null ? null : state.votes[playerId]
+                            });
+                    });
                 },
                 getNextPlayer = () => {
                     const nextPlayerIndex = [...room.players].indexOf(room.master) + 1;
@@ -149,6 +146,7 @@ function init(wsServer, path, vkToken) {
                 endRound = () => {
                     room.votes = state.votes;
                     room.masterCard = state.masterCard;
+                    state.masterCard = null;
                     countPoints();
                     room.readyPlayers.clear();
                     room.master = getNextPlayer();
@@ -164,6 +162,7 @@ function init(wsServer, path, vkToken) {
                     room.phase = 0;
                     clearInterval(interval);
                     update();
+                    updatePlayerState();
                 },
                 startRound = () => {
                     room.readyPlayers.clear();
@@ -183,7 +182,6 @@ function init(wsServer, path, vkToken) {
                         if (room.master === user && room.phase === 1) {
                             room.inactivePlayers.delete(user);
                             room.readyPlayers.add(user);
-                            room.phase = 2;
                             room.votes = {};
                             state.votes = {};
                             room.stopPlayer = null;
@@ -191,22 +189,31 @@ function init(wsServer, path, vkToken) {
                                 dealWords(room.masterCard);
                             room.masterCard = null;
                             state.masterCard = word;
+                            room.phase = 2;
+                            room.time = null;
                             startTimer();
                             update();
                             updatePlayerState();
-                        } else if (room.master !== user && room.phase === 2 && !room.readyPlayers.has(user)) {
+                        } else if (room.master !== user && room.phase === 2) {
                             room.inactivePlayers.delete(user);
                             room.readyPlayers.add(user);
                             state.votes[user] = word;
-                            if (room.readyPlayers.size === 2) {
-                                room.stopPlayer = user;
-                                room.phase = 3;
-                                startTimer();
-                            }
+                            room.stopPlayer = user;
+                            room.phase = 3;
+                            room.time = null;
+                            startTimer();
+                            update();
+                            updatePlayerState();
+                        } else if (room.master !== user && room.phase === 3 && !room.readyPlayers.has(user)) {
+                            room.inactivePlayers.delete(user);
+                            room.readyPlayers.add(user);
+                            state.votes[user] = word;
                             if (room.onlinePlayers.size === room.readyPlayers.size)
                                 endRound();
-                            else
+                            else {
+                                update();
                                 updatePlayerState();
+                            }
                         }
                     } else stopGame();
                 },

@@ -571,11 +571,11 @@ a {
 
 
 .word.picked .word-box {
-    box-shadow: 0 0 0 5px rgba(255, 134, 0, 0.81);
+    box-shadow: 0 0 0 5px rgba(251, 153, 45, 0.87);
 }
 
 .word.correct .word-box {
-    box-shadow: 0 0 0 5px rgba(146, 255, 0, 0.4);
+    box-shadow: 0 0 0 5px rgba(146, 255, 0, 0.65);;
 }
 
 .words-wrap {

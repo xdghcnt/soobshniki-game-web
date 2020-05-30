@@ -122,6 +122,8 @@ class Game extends React.Component {
                 else if (state.phase === 2 && this.state.readyPlayers.length !== state.readyPlayers.length)
                     this.tapSound.play();
             }
+            if (this.state.inited && this.state.phase !== 2 && state.phase === 2)
+                this.progressBarUpdate(0, 100);
             this.setState(Object.assign({
                 userId: this.userId
             }, state));
@@ -444,8 +446,8 @@ class Game extends React.Component {
                                 <div className="words">
                                     {data.cards.map((word, index) => (
                                         <div className={cs("word", {
-                                            correct: data.masterCard === index + 1,
-                                            picked: data.votes[data.userId] === index + 1
+                                            correct: data.masterPicked === index + 1 || data.masterCard === index + 1,
+                                            picked: data.picked === index + 1 || data.votes[data.userId] === index + 1
                                         })}
                                              onClick={() => this.handleClickCard(index + 1)}>
                                             <div className="word-box">
