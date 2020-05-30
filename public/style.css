@@ -1,0 +1,603 @@
+.dark-theme .game {
+    background: #202020;
+}
+
+.dark-theme .host-controls {
+    background: rgba(54, 55, 57, 0.78);
+    box-shadow: 0 0 4px 1px #050505;
+}
+
+body.dark-theme {
+    color: #cccaca;
+}
+
+.player.self {
+    font-weight: bold;
+}
+
+.player.current:before {
+    content: "➜ ";
+    line-height: 0;
+}
+
+.player.offline {
+. status-bar color: #adadad;
+}
+
+.teamsLocked .spectators {
+    cursor: default;
+}
+
+.host-controls {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: 6px;
+    background: rgba(255, 252, 245, 0.58);
+    user-select: none;
+    cursor: default;
+    text-align: right;
+    z-index: 1;
+    box-shadow: 0 0 4px 1px #969696;
+}
+
+.main-row {
+    display: flex;
+    justify-content: space-between;
+    min-height: 500px;
+    z-index: 1;
+    user-select: none;
+}
+
+.game-board {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.player-host-controls {
+    margin-left: 5px;
+    display: none;
+}
+
+.player:hover .player-host-controls, .player:focus .player-host-controls {
+    display: inline-block;
+}
+
+.player .host-button, .command .host-button {
+    font-size: 16px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.kicked {
+    color: black;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(to right, rgb(238, 244, 236) 0%, #fff5e9 100%);
+    background: #e5efde;
+    -webkit-user-drag: none;
+}
+
+@media (min-width: 768px) and (max-width: 959px) {
+}
+
+@media (max-width: 767px) {
+}
+
+.captcha-solved #captcha-container {
+    display: none;
+}
+
+.little-controls input {
+    width: 39px;
+    background: transparent;
+    border: 1px solid;
+    color: #cccaca;
+    padding: 2px;
+    margin: 3px;
+}
+
+.start-game-buttons div {
+    display: inline-block;
+    padding: 17px;
+}
+
+.little-controls div {
+    display: inline-block;
+}
+
+.settings-button {
+    cursor: pointer;
+}
+
+.settings-button:hover {
+    background: #f4e2e0;
+}
+
+.dark-theme .settings-button:hover {
+    background: #363739;
+}
+
+.level-selected {
+    background: #f9e7e5;
+}
+
+.dark-theme .level-selected {
+    background: #484848;
+}
+
+.little-controls input {
+    color: black;
+}
+
+.dark-theme .little-controls input {
+    color: #cccaca;
+}
+
+.start-game-buttons i, .custom-game-button i {
+    vertical-align: bottom;
+    margin-right: 3px;
+}
+
+.little-controls i {
+    vertical-align: middle;
+    margin-right: 2px;
+}
+
+.side-buttons {
+    display: none;
+}
+
+.host-controls:hover .side-buttons, .host-controls:focus .side-buttons {
+    display: inline-block;
+}
+
+.start-game-title {
+    text-align: center;
+    padding: 7px;
+    border-top: 1px solid;
+    margin-top: 4px;
+    padding-bottom: 3px;
+}
+
+.little-controls {
+    text-align: left;
+    border-bottom: 1px solid;
+    padding-bottom: 6px;
+    height: 25px;
+}
+
+.side-buttons * {
+    margin-right: 2px;
+}
+
+.game-settings .value {
+    vertical-align: middle;
+    padding: 4.5px 0;
+    padding-right: 27px;
+    display: inline-block;
+}
+
+.host-controls-menu {
+    display: none;
+    margin-bottom: 9px;
+}
+
+.host-controls:hover .host-controls-menu, .host-controls:focus .host-controls-menu {
+    display: block;
+}
+
+.start-game-buttons {
+    color: gray;
+}
+
+.start-game-buttons .settings-button {
+    color: black;
+}
+
+.dark-theme .start-game-buttons {
+    color: #909090;
+}
+
+.dark-theme .start-game-buttons .settings-button {
+    color: #cccaca;
+}
+
+.settings-hover-button {
+    padding: 2px;
+}
+
+.round-track-bar {
+    background-color: #d6ecc6;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    position: relative;
+}
+
+.dark-theme .round-track-bar {
+    background-color: #7f9271;
+}
+
+.rtb-clip1, .rtb-clip2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+}
+
+.rtb-slice1, .rtb-slice2 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    transform: rotate(0);
+    background-color: #82ec5a;
+    transition: transform 1s linear;
+}
+
+.dark-theme .rtb-slice1, .dark-theme .rtb-slice2 {
+    background-color: #7ace5a;
+}
+
+.rtb-clip1 {
+    clip: rect(0, 50px, 50px, 25px);
+}
+
+.rtb-clip2 {
+    clip: rect(0, 25px, 50px, 0);
+}
+
+.rtb-slice1 {
+    clip: rect(0, 25px, 50px, 0);
+}
+
+.rtb-slice2 {
+    clip: rect(0, 50px, 50px, 25px);
+}
+
+.rtb-content {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-bar-circle {
+    width: 42px;
+    height: 42px;
+    background: white;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dark-theme .status-bar-circle {
+    background: #363739;
+}
+
+.status-bar-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.status-bar {
+    margin: auto;
+    width: 415px;
+    background: white;
+    padding: 8px;
+    display: table;
+    height: 20px;
+    overflow: hidden;
+    border-radius: 0 0 25px 25px;
+    box-shadow: 0 0 4px 1px #969696;
+}
+
+.dark-theme .status-bar {
+    background: #363739;
+    box-shadow: 0 0 4px 1px #050505;
+}
+
+.timer-section {
+    display: table-cell;
+    vertical-align: bottom;
+    width: 50px;
+}
+
+.title-section {
+    display: table-cell;
+    padding-left: 70px;
+    padding-right: 20px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.join-button {
+    border-bottom: 1px dotted;
+    display: inline-block;
+    cursor: pointer;
+    margin: 6px 0;
+}
+
+.spectators {
+    border-top: 1px solid #cccccc;
+}
+
+.player-list-section {
+    background: white;
+    padding: 10px;
+    width: 193px;
+    box-shadow: 0 0 4px 1px #969696;
+}
+
+.dark-theme .player-list-section {
+    background: #363739;
+    box-shadow: 0 0 4px 1px #050505;
+}
+
+
+.desk-cards-section {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#avatar-input {
+    display: none;
+}
+
+.player {
+    white-space: nowrap;
+    margin: 6px 0;
+    user-select: none;
+}
+
+.avatar {
+    background-size: cover;
+    background-position: center;
+    border-radius: 25px;
+    background-repeat: no-repeat;
+}
+
+.dark-theme .avatar {
+    color: #fcfcfc;
+}
+
+.player .avatar {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #e5efde;
+    border-radius: 100px;
+    background-clip: content-box;
+}
+
+.dark-theme .player .avatar {
+    border: 3px solid #687260;
+}
+
+.player.ready .avatar {
+    border: 3px solid #97c377;
+}
+
+.player-avatar-section {
+    display: table-cell;
+    border-radius: 25px;
+    position: relative;
+}
+
+.dark-theme .player-avatar-section {
+    background: #363739;
+}
+
+.player-name-section {
+    padding: 0 11px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-stub {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.round-track-bar .avatar {
+    width: 42px;
+    height: 42px;
+    border: 2px solid white;
+}
+
+.dark-theme .round-track-bar .avatar {
+    border: 2px solid #363739;
+}
+
+.round-track-bar .avatar.has-avatar, .card-owner .avatar.has-avatar {
+    background-color: white !important;
+}
+
+.dark-theme .round-track-bar .avatar.has-avatar, .dark-theme .card-owner .avatar.has-avatar {
+    background-color: #363739 !important;
+}
+
+.round-track-bar .avatar.has-avatar {
+    border: 1px solid white;
+}
+
+.dark-theme .round-track-bar .avatar.has-avatar {
+    border: 1px solid #363739 !important;
+}
+
+.change-avatar-icon {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    padding: 3px;
+    border-radius: 25px;
+    color: #000000;
+    opacity: 0.7;
+    cursor: pointer;
+    background-color: white;
+    display: none;
+}
+
+.dark-theme .change-avatar-icon {
+    background-color: #363739;
+    color: #e2dede;
+}
+
+.player-avatar-section:hover .change-avatar-icon, .player-avatar-section:focus .change-avatar-icon {
+    display: block;
+}
+
+.game-board.teamsLocked .join-button {
+    display: none;
+}
+
+.game-board.teamsLocked .spectators.empty {
+    display: none;
+}
+
+.player-name {
+    max-width: 102px;
+    overflow: hidden;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+}
+
+.popup_modals .modal_buttons .btn.btn_pmry {
+    background-color: #8dbf68 !important;;
+}
+
+.popup_modals .modal_buttons .btn.btn_sdry {
+    background-color: #7f8c8d !important;
+}
+
+.panel {
+    box-shadow: 0 0 4px 1px #969696;
+    background: white;
+}
+
+.dark-theme .panel {
+    box-shadow: 0 0 4px 1px #050505;
+    background: #363739;
+}
+
+a {
+    color: black;
+}
+
+.dark-theme a {
+    color: #cccaca;
+}
+
+.panel-accent {
+    background: #dde8d4;
+}
+
+.dark-theme .panel-accent {
+    background: #4c4c4c;
+}
+
+.words {
+    max-width: 760px;
+    display: flex;
+    flex: 5 1 0;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.word {
+    flex: 1 0 20%;
+    display: flex;
+    min-width: 33%;
+    min-height: 20%;
+    box-sizing: border-box;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
+    letter-spacing: 0.5px;
+    font-size: 23px;
+    align-self: stretch;
+    padding: 12px;
+}
+
+.word-box {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1 0 100%;
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    cursor: default;
+    background: rgba(222, 197, 179, 0.81);
+    color: #444;
+    box-shadow: 0 0 0 20px rgba(255, 252, 245, 0);
+    transition: box-shadow 0.5s ease-out;
+}
+
+.word-box span {
+    flex: 1 0 0;
+    user-select: none;
+    line-height: normal;
+}
+
+
+.word.picked .word-box {
+    box-shadow: 0 0 0 5px rgba(255, 134, 0, 0.81);
+}
+
+.word.correct .word-box {
+    box-shadow: 0 0 0 5px rgba(146, 255, 0, 0.4);
+}
+
+.words-wrap {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.card-votes .avatar {
+    width: 30px;
+    height: 30px;
+    margin: 4px;
+    box-shadow: 0 0 4px 1px #050505;
+}
+
+.card-votes {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
