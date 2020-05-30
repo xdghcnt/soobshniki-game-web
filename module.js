@@ -242,9 +242,9 @@ function init(wsServer, path, vkToken) {
                             else if (oneGuessed)
                                 diff = 3;
                         } else if (room.stopPlayer === player) {
-                            if (nobodyGuessed)
+                            if (!playersGuessed.has(player))
                                 diff = -1;
-                            else if (somebodyGuessed && playersGuessed.has(player))
+                            else if ((somebodyGuessed || everybodyGuessed) && playersGuessed.has(player))
                                 diff = 2;
                             else if (oneGuessed && playersGuessed.has(player))
                                 diff = 3;
