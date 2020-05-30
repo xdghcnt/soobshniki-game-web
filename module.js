@@ -210,7 +210,7 @@ function init(wsServer, path, vkToken) {
                             room.inactivePlayers.delete(user);
                             room.readyPlayers.add(user);
                             state.votes[user] = word;
-                            if (room.onlinePlayers.size === room.readyPlayers.size)
+                            if (room.players.size === room.readyPlayers.size)
                                 endRound();
                             else {
                                 update();
@@ -229,8 +229,7 @@ function init(wsServer, path, vkToken) {
                         }
                     });
                     const
-                        nobodyGuessed = guessedCount === 0,
-                        everybodyGuessed = guessedCount === room.players.size - 1,
+                        everybodyGuessed = guessedCount === room.readyPlayers.size - 1,
                         oneGuessed = guessedCount === 1,
                         somebodyGuessed = !oneGuessed && !everybodyGuessed && guessedCount > 0;
 
