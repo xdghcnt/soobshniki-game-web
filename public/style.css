@@ -601,3 +601,11 @@ a {
     justify-content: flex-end;
     align-items: flex-end;
 }
+
+.next-word {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 17px;
+    margin: 11px;
+}

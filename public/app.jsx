@@ -452,7 +452,9 @@ class Game extends React.Component {
                                              onClick={() => this.handleClickCard(index + 1)}>
                                             <div className="word-box">
                                                 <span>{word}</span>
-                                                {data.phase === 1 && Object.keys(data.votes).length ?
+                                                {data.masterCard === index + 1 && data.nextWord ?
+                                                    <div className="next-word">{data.nextWord}</div> : ""}
+                                                {(data.phase === 1 || data.playerWin) && Object.keys(data.votes).length ?
                                                     <div className="card-votes">{
                                                         Object.keys(data.votes)
                                                             .filter((player) => data.votes[player] === index + 1)

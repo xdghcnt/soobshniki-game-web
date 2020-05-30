@@ -110,11 +110,8 @@ function init(wsServer, path, vkToken) {
                         }, 100);
                     }
                 },
-                dealWords = (replace) => {
-                    if (replace == null)
-                        room.cards = shuffleArray(defaultWords[1]).slice(0, 9);
-                    else
-                        room.cards[replace - 1] = shuffleArray(defaultWords[1])[0];
+                dealWords = () => {
+                    room.cards = shuffleArray(defaultWords[1]).slice(0, 9);
                 },
                 startGame = () => {
                     if (room.players.size >= PLAYERS_MIN) {
@@ -152,9 +149,10 @@ function init(wsServer, path, vkToken) {
                     countPoints();
                     room.readyPlayers.clear();
                     room.master = getNextPlayer();
-                    if (!room.playerWin)
+                    if (!room.playerWin) {
+                        room.nextWord = shuffleArray(defaultWords[1])[0];
                         startRound();
-                    else
+                    } else
                         endGame();
                 },
                 stopGame = () => {
@@ -187,8 +185,8 @@ function init(wsServer, path, vkToken) {
                             room.votes = {};
                             state.votes = {};
                             room.stopPlayer = null;
-                            if (room.masterCard)
-                                dealWords(room.masterCard);
+                            if (room.nextWord)
+                                room.cards[room.masterCard - 1] = room.nextWord;
                             room.masterCard = null;
                             state.masterCard = word;
                             room.phase = 2;
@@ -244,7 +242,7 @@ function init(wsServer, path, vkToken) {
                         } else if (room.stopPlayer === player) {
                             if (nobodyGuessed)
                                 diff = -1;
-                            else if (somebodyGuessed)
+                            else if (somebodyGuessed && playersGuessed.has(player))
                                 diff = 2;
                             else if (oneGuessed && playersGuessed.has(player))
                                 diff = 3;
