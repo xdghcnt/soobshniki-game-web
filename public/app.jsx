@@ -458,7 +458,22 @@ class Game extends React.Component {
                                                     <div className="card-votes">{
                                                         Object.keys(data.votes)
                                                             .filter((player) => data.votes[player] === index + 1)
-                                                            .map((player) => <Avatar data={data} player={player}/>)
+                                                            .map((player) => {
+                                                                const
+                                                                    scoreDiff = data.playerScoreDiffs[player],
+                                                                    positive = scoreDiff > 0,
+                                                                    negative = scoreDiff < 0,
+                                                                    sign = positive ? "+" : "";
+                                                                return <div className={cs("player-vote", {
+                                                                    stopPlayer: data.stopPlayer === player
+                                                                })}>
+                                                                    {scoreDiff ? <div className={cs("score-diff", {
+                                                                        positive,
+                                                                        negative
+                                                                    })}>{sign}{scoreDiff}</div> : ""}
+                                                                    <Avatar data={data} player={player}/>
+                                                                </div>;
+                                                            })
                                                     }</div> : ""}
                                             </div>
                                         </div>))}

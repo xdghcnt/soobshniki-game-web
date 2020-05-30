@@ -31,6 +31,7 @@ function init(wsServer, path, vkToken) {
                     players: new JSONSet(),
                     readyPlayers: new JSONSet(),
                     playerScores: {},
+                    playerScoreDiffs: {},
                     teamsLocked: false,
                     timed: true,
                     masterCard: null,
@@ -184,6 +185,7 @@ function init(wsServer, path, vkToken) {
                             room.readyPlayers.add(user);
                             room.votes = {};
                             state.votes = {};
+                            room.playerScoreDiffs = {};
                             room.stopPlayer = null;
                             if (room.nextWord)
                                 room.cards[room.masterCard - 1] = room.nextWord;
@@ -228,7 +230,7 @@ function init(wsServer, path, vkToken) {
                     });
                     const
                         nobodyGuessed = guessedCount === 0,
-                        everybodyGuessed = guessedCount === room.players.size,
+                        everybodyGuessed = guessedCount === room.players.size - 1,
                         oneGuessed = guessedCount === 1,
                         somebodyGuessed = !oneGuessed && !everybodyGuessed && guessedCount > 0;
 
@@ -256,6 +258,7 @@ function init(wsServer, path, vkToken) {
                         }
                         room.playerScores[player] = room.playerScores[player] || 0;
                         room.playerScores[player] += diff;
+                        room.playerScoreDiffs[player] = diff;
                         if (room.playerScores[player] < 0)
                             room.playerScores[player] = 0;
                     });

@@ -609,3 +609,19 @@ a {
     font-size: 17px;
     margin: 11px;
 }
+
+.score-diff {
+    font-size: 18px;
+}
+
+.score-diff.positive {
+    color: #367816;
+}
+
+.score-diff.negative {
+    color: #ad0000;
+}
+
+.player-vote.stopPlayer .avatar {
+    box-shadow: 0 0 8px 1px #ff0000;
+}
