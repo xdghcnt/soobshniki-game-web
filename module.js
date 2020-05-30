@@ -142,6 +142,8 @@ function init(wsServer, path, vkToken) {
                     room.time = null;
                     room.phase = 0;
                     clearInterval(interval);
+                    update();
+                    updatePlayerState();
                 },
                 endRound = () => {
                     room.votes = state.votes;
@@ -263,7 +265,7 @@ function init(wsServer, path, vkToken) {
                     if (scores[0] > scores[1]) {
                         room.playerLeader = [...room.players].filter(player => room.playerScores[player] === scores[0])[0];
                         if (scores[0] >= room.goal)
-                            room.playerWin = playerLeader;
+                            room.playerWin = room.playerLeader;
                     }
                 },
                 removePlayer = (playerId) => {

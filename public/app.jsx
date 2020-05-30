@@ -356,7 +356,7 @@ class Game extends React.Component {
                 }, 1000);
             }
             if (data.playerWin) {
-                status = `Game is over`;
+                status = ``;
             } else if (data.phase === 0) {
                 if (data.players.length > 2)
                     status = "Host can start game";
