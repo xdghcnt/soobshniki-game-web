@@ -177,6 +177,13 @@ class Game extends React.Component {
         this.revealSound.volume = 0.3;
         this.masterSound = new Audio("/soobshniki/master.mp3");
         this.masterSound.volume = 0.7;
+        document.body.addEventListener("keydown", (evt) => this.keyDown(evt));
+    }
+
+    keyDown(evt) {
+        const key = parseInt(evt.code.substr(-1));
+        if (evt.code.startsWith("Numpad") && evt.target === document.body && key > 0 && key < 10)
+            this.handleClickCard([0, 7, 8, 9, 4, 5, 6, 1, 2, 3][key]);
     }
 
     debouncedEmit() {
