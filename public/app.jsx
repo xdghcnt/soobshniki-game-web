@@ -103,7 +103,7 @@ class Game extends React.Component {
             delete localStorage.acceptDelete;
         }
         initArgs.avatarId = localStorage.avatarId;
-        initArgs.roomId = location.hash.substr(1);
+        initArgs.roomId = this.roomId = location.hash.substr(1);
         initArgs.userId = this.userId = localStorage.dixitUserId;
         initArgs.token = this.userToken = localStorage.dixitUserToken;
         initArgs.userName = localStorage.userName;
