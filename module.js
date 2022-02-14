@@ -152,7 +152,9 @@ function init(wsServer, path, vkToken) {
                     room.readyPlayers.clear();
                     room.master = getNextPlayer();
                     if (!room.playerWin) {
-                        room.nextWord = shuffleArray(defaultWords[1])[0];
+                       do {
+                            room.nextWord = shuffleArray(defaultWords[1])[1];
+                        } while (room.cards.includes(room.nextWord))
                         startRound();
                     } else
                         endGame();
