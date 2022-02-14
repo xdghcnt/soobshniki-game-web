@@ -20,6 +20,7 @@ function init(wsServer, path, vkToken) {
             super(hostId, hostData, userRegistry);
             const
                 room = {
+                    ...this.room,
                     inited: true,
                     hostId: hostId,
                     spectators: new JSONSet(),
@@ -323,6 +324,7 @@ function init(wsServer, path, vkToken) {
             this.userLeft = userLeft;
             this.userEvent = userEvent;
             this.eventHandlers = {
+                ...this.eventHandlers,
                 "update-avatar": (user, id) => {
                     room.playerAvatars[user] = id;
                     update()
