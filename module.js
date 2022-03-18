@@ -14,7 +14,7 @@ function init(wsServer, path, vkToken) {
     registry.handleAppPage(path, `${__dirname}/public/app.html`);
 
     const defaultWords = JSON.parse(fs.readFileSync(`${registry.config.appDir}/moderated-words.json`));
-    const dotaWords = JSON.parse(fs.readFileSync(`${registry.config.appDir}/dota.json`));
+    //const dotaWords = JSON.parse(fs.readFileSync(`${registry.config.appDir}/dota.json`));
 
     class GameState extends wsServer.users.RoomState {
         constructor(hostId, hostData, userRegistry) {
