@@ -375,9 +375,9 @@ class Game extends React.Component {
                     status = "Not enough players";
             } else if (!isMaster) {
                 if (data.phase === 1)
-                    status = `${data.playerNames[data.master]} is making up a story...`;
+                    status = `${data.playerNames[data.master]} is choosing a card...`;
                 else if (data.phase === 2)
-                    status = "Now try to guess the card";
+                    status = "Now listen and try to guess the card";
                 else if (data.phase === 3)
                     status = "Now try to guess the card. Hurry!";
             } else {

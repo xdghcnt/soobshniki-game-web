@@ -6,7 +6,7 @@ function init(wsServer, path, vkToken) {
         registry = wsServer.users,
         channel = "soobshniki",
         testMode = process.argv[2] === "debug",
-        PLAYERS_MIN = testMode ? 1 : 3;
+        PLAYERS_MIN = testMode ? 1 : 2;
 
     app.use("/soobshniki", wsServer.static(`${__dirname}/public`));
     if (registry.config.appDir)
@@ -14,6 +14,7 @@ function init(wsServer, path, vkToken) {
     registry.handleAppPage(path, `${__dirname}/public/app.html`);
 
     const defaultWords = JSON.parse(fs.readFileSync(`${registry.config.appDir}/moderated-words.json`));
+    //const dotaWords = JSON.parse(fs.readFileSync(`${registry.config.appDir}/dota.json`));
 
     class GameState extends wsServer.users.RoomState {
         constructor(hostId, hostData, userRegistry) {
@@ -114,8 +115,10 @@ function init(wsServer, path, vkToken) {
                 },
                 dealWords = () => {
                     room.cards = shuffleArray(defaultWords[1]).slice(0, 9);
+                   
                 },
                 startGame = () => {
+                    
                     if (room.players.size >= PLAYERS_MIN) {
                         room.paused = false;
                         room.teamsLocked = true;
@@ -143,6 +146,7 @@ function init(wsServer, path, vkToken) {
                     clearInterval(interval);
                     update();
                     updatePlayerState();
+                    room.nextWord = '';
                 },
                 endRound = () => {
                     room.votes = state.votes;
@@ -155,7 +159,7 @@ function init(wsServer, path, vkToken) {
                        do {
                             room.nextWord = shuffleArray(defaultWords[1])[1];
                         } while (room.cards.includes(room.nextWord))
-                        startRound();
+                        setTimeout(startRound, 800);
                     } else
                         endGame();
                 },
