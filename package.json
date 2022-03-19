@@ -6,7 +6,7 @@
   "files": [
     "module.js",
     "public",
-    "dota"
+    "dota.json"
   ],
   "dependencies": {
     "randomcolor": "0.5.3"
