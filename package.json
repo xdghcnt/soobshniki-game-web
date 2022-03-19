@@ -5,7 +5,6 @@
   "dependencies": {
     "express": "4.16.3",
     "ws-server-engine": "file:./ws",
-    "soobshniki": "file:./soobshniki",
-    "dota": "file:./dota"
+    "soobshniki": "file:./soobshniki"
   }
 }
