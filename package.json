@@ -1,13 +1,11 @@
 {
-  "name": "codenames",
+  "name": "meme-police",
   "version": "0.0.0",
-  "main": "module.js",
   "private": true,
-  "files": [
-    "module.js",
-    "public"
-  ],
   "dependencies": {
-    "randomcolor": "0.5.3"
+    "express": "4.16.3",
+    "ws-server-engine": "file:./ws",
+    "soobshniki": "file:./soobshniki",
+    "dota": "file:./dota"
   }
 }
