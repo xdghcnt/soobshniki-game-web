@@ -1,10 +1,13 @@
 {
-  "name": "meme-police",
+  "name": "codenames",
   "version": "0.0.0",
+  "main": "module.js",
   "private": true,
+  "files": [
+    "module.js",
+    "public"
+  ],
   "dependencies": {
-    "express": "4.16.3",
-    "ws-server-engine": "file:./ws",
-    "soobshniki": "file:./soobshniki"
+    "randomcolor": "0.5.3"
   }
 }
