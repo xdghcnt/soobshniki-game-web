@@ -6,7 +6,7 @@ function init(wsServer, path, vkToken) {
         registry = wsServer.users,
         channel = "soobshniki",
         testMode = process.argv[2] === "debug",
-        PLAYERS_MIN = testMode ? 1 : 2;
+        PLAYERS_MIN = testMode ? 1 : 3;
 
     app.use("/soobshniki", wsServer.static(`${__dirname}/public`));
     if (registry.config.appDir)
@@ -126,7 +126,7 @@ function init(wsServer, path, vkToken) {
                    
                 },
                 startGame = () => {
-                    debugger
+                    
                     if (room.players.size >= PLAYERS_MIN) {
                         room.paused = false;
                         room.teamsLocked = true;
@@ -165,7 +165,6 @@ function init(wsServer, path, vkToken) {
                     room.master = getNextPlayer();
                     if (!room.playerWin) {
                        do {
-                        debugger
                             room.nextWord = shuffleArray(wordPack)[1];
                         } while (room.cards.includes(room.nextWord))
                         setTimeout(startRound, 800);
