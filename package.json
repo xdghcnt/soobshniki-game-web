@@ -5,7 +5,8 @@
   "private": true,
   "files": [
     "module.js",
-    "public"
+    "public",
+    "dota.json"
   ],
   "dependencies": {
     "randomcolor": "0.5.3"

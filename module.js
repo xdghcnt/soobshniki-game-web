@@ -6,7 +6,7 @@ function init(wsServer, path, vkToken) {
         registry = wsServer.users,
         channel = "soobshniki",
         testMode = process.argv[2] === "debug",
-        PLAYERS_MIN = testMode ? 1 : 2;
+        PLAYERS_MIN = testMode ? 1 : 3;
 
     app.use("/soobshniki", wsServer.static(`${__dirname}/public`));
     if (registry.config.appDir)
@@ -14,7 +14,8 @@ function init(wsServer, path, vkToken) {
     registry.handleAppPage(path, `${__dirname}/public/app.html`);
 
     const defaultWords = JSON.parse(fs.readFileSync(`${registry.config.appDir}/moderated-words.json`));
-    //const dotaWords = JSON.parse(fs.readFileSync(`${registry.config.appDir}/dota.json`));
+    const dotaWords = JSON.parse(fs.readFileSync(`${registry.config.appDir}/dota.json`));
+    
 
     class GameState extends wsServer.users.RoomState {
         constructor(hostId, hostData, userRegistry) {
@@ -58,6 +59,11 @@ function init(wsServer, path, vkToken) {
             this.state = state;
             this.lastInteraction = new Date();
             let interval;
+            let wordPack = '';
+                    if(room.roomId.includes('dota')) {
+                        wordPack = dotaWords.wordList;
+                    } else 
+                    wordPack = defaultWords[1];
             const
                 send = (target, event, data) => userRegistry.send(target, event, data),
                 update = () => send(room.onlinePlayers, "state", room),
@@ -114,7 +120,9 @@ function init(wsServer, path, vkToken) {
                     }
                 },
                 dealWords = () => {
-                    room.cards = shuffleArray(defaultWords[1]).slice(0, 9);
+                   
+                        room.cards = shuffleArray(wordPack).slice(0, 9);
+                   
                    
                 },
                 startGame = () => {
@@ -146,7 +154,7 @@ function init(wsServer, path, vkToken) {
                     clearInterval(interval);
                     update();
                     updatePlayerState();
-                    room.nextWord = '';
+                    room.nextWord = ' ';
                 },
                 endRound = () => {
                     room.votes = state.votes;
@@ -157,7 +165,7 @@ function init(wsServer, path, vkToken) {
                     room.master = getNextPlayer();
                     if (!room.playerWin) {
                        do {
-                            room.nextWord = shuffleArray(defaultWords[1])[1];
+                            room.nextWord = shuffleArray(wordPack)[1];
                         } while (room.cards.includes(room.nextWord))
                         setTimeout(startRound, 800);
                     } else
