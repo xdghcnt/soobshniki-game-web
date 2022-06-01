@@ -14,8 +14,8 @@ function init(wsServer, path, vkToken) {
     registry.handleAppPage(path, `${__dirname}/public/app.html`);
 
     const defaultWords = JSON.parse(fs.readFileSync(`${registry.config.appDir}/moderated-words.json`));
-    const dotaWords = JSON.parse(fs.readFileSync(`${registry.config.appDir}/dota.json`));
-    
+    const dotaWords = JSON.parse(fs.readFileSync(`${__dirname}/dota.json`));
+
 
     class GameState extends wsServer.users.RoomState {
         constructor(hostId, hostData, userRegistry) {
@@ -62,7 +62,7 @@ function init(wsServer, path, vkToken) {
             let wordPack = '';
                     if(room.roomId.includes('dota')) {
                         wordPack = dotaWords.wordList;
-                    } else 
+                    } else
                     wordPack = defaultWords[1];
             const
                 send = (target, event, data) => userRegistry.send(target, event, data),
@@ -120,13 +120,13 @@ function init(wsServer, path, vkToken) {
                     }
                 },
                 dealWords = () => {
-                   
+
                         room.cards = shuffleArray(wordPack).slice(0, 9);
-                   
-                   
+
+
                 },
                 startGame = () => {
-                    
+
                     if (room.players.size >= PLAYERS_MIN) {
                         room.paused = false;
                         room.teamsLocked = true;
