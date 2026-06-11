@@ -25,6 +25,7 @@ class Player extends React.Component {
                      onTouchStart={(e) => e.target.focus()}
                      onClick={() => (id === data.userId) && this.props.handleAvatarClick()}>
                     <Avatar data={data} player={id}/>
+                    <i  className="change-avatar-icon material-icons" title="Change avatar">
                     {id === data.userId ? (<i className="change-avatar-icon material-icons" title="Change avatar">
                         edit
                     </i>) : ""}
